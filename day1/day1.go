@@ -3,7 +3,6 @@ package day1
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"strconv"
 	"strings"
 	"log"
@@ -36,16 +35,11 @@ type Coord struct {
 	y int
 }
 
-func Run() {
+func Run(input string, task int) {
 
-	b, err := ioutil.ReadFile("data-day1")
-	if err != nil {
-		panic(err)
-	}
-
-	asd := strings.Split(string(b), ", ")
-	for _, s := range asd {
-		prefix := s[:1]
+	instructions := strings.Split(input, ", ")
+	for _, instriction := range instructions {
+		prefix := instriction[:1]
 		if prefix == "R" {
 			currentDirection = nextDirection(Compass(currentDirection), right)
 		} else if prefix == "L" {
@@ -54,7 +48,7 @@ func Run() {
 			panic("Prefix wasn't L or R")
 		}
 
-		distance, err := strconv.Atoi(s[1:])
+		distance, err := strconv.Atoi(instriction[1:])
 		if err != nil {
 			panic("fuq")
 		}
@@ -63,10 +57,10 @@ func Run() {
 
 	}
 
-	fmt.Printf("(%d,%d)\n", x, y)
-	fmt.Printf("distance %d\n", abs(x)+abs(y))
+	fmt.Printf("Easterbunny HQ location (%d,%d)\n", x, y)
+	fmt.Printf("Distance to easterbunny HQ %d\n", abs(x)+abs(y))
 	fmt.Printf("First coord visited twice (%d,%d)\n", firstCoordVisitedTwice.x, firstCoordVisitedTwice.y)
-	fmt.Printf("distance %d", abs(firstCoordVisitedTwice.x)+abs(firstCoordVisitedTwice.y))
+	fmt.Printf("Distance to first coord visited twice %d", abs(firstCoordVisitedTwice.x)+abs(firstCoordVisitedTwice.y))
 }
 
 func nextDirection(currentDirection Compass, turn TurnDirection) Compass {
@@ -114,7 +108,6 @@ func addCoords(direction Compass, xPos int, yPos int, distance int) {
 	val, ok := locationHistory[nextCord]
 	if ok {
 		if !firstCoordVisitedTwiceSet {
-			fmt.Printf("waddoo %d %d", nextCord.x, nextCord.y)
 			firstCoordVisitedTwiceSet = true
 			firstCoordVisitedTwice = nextCord
 		}

@@ -29,7 +29,7 @@ func main() {
 
 	switch *day {
 	case 1:
-		day1.Run()
+		day1.Run(stringInput, *task)
 		return
 	case 2:
 		day2.Run()
