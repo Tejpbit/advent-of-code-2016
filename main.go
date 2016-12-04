@@ -2,11 +2,12 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"github.com/tejpbit/advent-of-code-2016/day1"
 	"github.com/tejpbit/advent-of-code-2016/day2"
 	"github.com/tejpbit/advent-of-code-2016/day3"
 	"io/ioutil"
+	"log"
+	"github.com/tejpbit/advent-of-code-2016/day4"
 )
 
 func main() {
@@ -23,8 +24,7 @@ func main() {
 	b, err := ioutil.ReadFile(*inputFile)
 	stringInput := string(b)
 	if err != nil {
-		fmt.Printf("%v", err)
-		panic("Couldn't read data-day2 file")
+		log.Fatal(err)
 	}
 
 	switch *day {
@@ -32,8 +32,10 @@ func main() {
 		day1.Run(stringInput, *task)
 		return
 	case 2:
-		day2.Run()
+		day2.Run(stringInput, *task)
 	case 3:
 		day3.Run(stringInput, *task)
+	case 4:
+		day4.Run(stringInput, *task)
 	}
 }

@@ -2,7 +2,6 @@ package day2
 
 import (
 	"fmt"
-	"io/ioutil"
 	"strings"
 )
 
@@ -19,7 +18,7 @@ var up = Coord{0, -1}
 var down = Coord{0, 1}
 
 var currentCoord Coord = Coord{0, 2}
-var keypad [][]int = [][]int{
+var keypad1 [][]int = [][]int{
 	{1, 2, 3},
 	{4, 5, 6},
 	{7, 8, 9}}
@@ -33,29 +32,31 @@ var keypad2 [][]int = [][]int{
 }
 var combination []int
 
-func Run() {
-	b, err := ioutil.ReadFile("day2/data-day2")
-	if err != nil {
-		fmt.Printf("%v", err)
-		panic("Couldn't read data-day2 file")
+func Run(input string, task int) {
+	inputLines := strings.Split(input, "\n")
+
+	keypad := keypad1
+	keypadMove := moveOnKeypad
+	if task == 2 {
+		keypad = keypad2
+		keypadMove = moveOnKeypad2
 	}
-	inputLines := strings.Split(string(b), "\n")
 
 	for _, line := range inputLines {
-		resultingCoord := walkTheLine(currentCoord, line)
+		resultingCoord := walkTheLine(currentCoord, line, keypadMove)
 		currentCoord = resultingCoord
-		combination = append(combination, keypad2[resultingCoord.y][resultingCoord.x])
+		combination = append(combination, keypad[resultingCoord.y][resultingCoord.x])
 	}
 	for _, e := range combination {
 		fmt.Printf("%X", e)
 	}
 }
 
-func walkTheLine(startCoord Coord, line string) (currentCoord Coord) {
+func walkTheLine(startCoord Coord, line string, moveFunction func(c Coord, m Coord) (Coord)) (currentCoord Coord) {
 	currentCoord = startCoord
 	for _, char := range line {
 		direction := getDirectionFromChar(char)
-		currentCoord = moveOnKeypad2(currentCoord, direction)
+		currentCoord = moveFunction(currentCoord, direction)
 	}
 	return
 }
