@@ -8,6 +8,9 @@ import (
 	"io/ioutil"
 	"log"
 	"github.com/tejpbit/advent-of-code-2016/day4"
+	"github.com/tejpbit/advent-of-code-2016/day5"
+	"github.com/tejpbit/advent-of-code-2016/day6"
+	"github.com/tejpbit/advent-of-code-2016/day7"
 )
 
 func main() {
@@ -37,5 +40,11 @@ func main() {
 		day3.Run(stringInput, *task)
 	case 4:
 		day4.Run(stringInput, *task)
+	case 5:
+		day5.Run(stringInput, *task)
+	case 6:
+		day6.Run(stringInput, *task)
+	case 7:
+		day7.Run(stringInput, *task)
 	}
 }
