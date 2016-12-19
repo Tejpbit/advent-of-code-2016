@@ -3,11 +3,11 @@ package day2
 import "testing"
 
 func TestWalkTheLine(t *testing.T) {
-	if endCoord := walkTheLine(Coord{1,1}, "ULL"); endCoord != (Coord{0,0}) {
+	if endCoord := walkTheLine(Coord{1,1}, "ULL", moveOnKeypad); endCoord != (Coord{0,0}) {
 		t.Errorf("Bad %v", endCoord)
 	}
 
-	if endCoord := walkTheLine(Coord{1,1}, "LURDL"); endCoord != (Coord{0,1}) {
+	if endCoord := walkTheLine(Coord{1,1}, "LURDL", moveOnKeypad); endCoord != (Coord{0,1}) {
 		t.Errorf("Bad %v", endCoord)
 	}
 }
