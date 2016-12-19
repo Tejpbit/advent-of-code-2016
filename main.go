@@ -2,15 +2,18 @@ package main
 
 import (
 	"flag"
-	"github.com/tejpbit/advent-of-code-2016/day1"
-	"github.com/tejpbit/advent-of-code-2016/day2"
-	"github.com/tejpbit/advent-of-code-2016/day3"
+	"github.com/tejpbit/advent-of-code-2016/01"
+	"github.com/tejpbit/advent-of-code-2016/02"
+	"github.com/tejpbit/advent-of-code-2016/3"
 	"io/ioutil"
 	"log"
-	"github.com/tejpbit/advent-of-code-2016/day4"
-	"github.com/tejpbit/advent-of-code-2016/day5"
-	"github.com/tejpbit/advent-of-code-2016/day6"
-	"github.com/tejpbit/advent-of-code-2016/day7"
+	"github.com/tejpbit/advent-of-code-2016/4"
+	"github.com/tejpbit/advent-of-code-2016/5"
+	"github.com/tejpbit/advent-of-code-2016/6"
+	"github.com/tejpbit/advent-of-code-2016/7"
+	"github.com/tejpbit/advent-of-code-2016/8"
+	"github.com/tejpbit/advent-of-code-2016/9"
+	"github.com/tejpbit/advent-of-code-2016/10"
 )
 
 func main() {
@@ -33,7 +36,6 @@ func main() {
 	switch *day {
 	case 1:
 		day1.Run(stringInput, *task)
-		return
 	case 2:
 		day2.Run(stringInput, *task)
 	case 3:
@@ -46,5 +48,12 @@ func main() {
 		day6.Run(stringInput, *task)
 	case 7:
 		day7.Run(stringInput, *task)
+	case 8:
+		day8.Run(stringInput, *task)
+	case 9:
+		day9.Run(stringInput, *task)
+		//task 2 453538 is to low
+	case 10:
+		day10.Run(stringInput, *task)
 	}
 }
